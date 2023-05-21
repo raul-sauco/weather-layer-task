@@ -26,5 +26,11 @@ The build step is as simple as calling _Gulp_ from the root of the project. If y
 
 To deploy, run `docker compose up -d` from the root of the project and then point your browser to `http://localhost:8080`. If you are already using that port, update it inside _docker-compose.yml_.
 
+## TODO
+
+Make units, location and other parameters adjustable.
+
+Add tests, remove secrets from VCS, remove the video and leave the layer by itself.
+
 [1]: https://api.openweathermap.org/data/2.5/weather
 [2]: https://github.com/h5bp/html5-boilerplate

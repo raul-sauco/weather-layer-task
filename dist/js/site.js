@@ -59,8 +59,10 @@ function refreshWidget(data) {
       "src",
       env.ICONS_URL.replace("{{icon}}", data.weather[0].icon)
     );
+  // We request the temperature in Kelvin, default, convert to celsius.
+  // Ideally the target unit would be a configurable parameter.
   document.getElementById("temperature").innerText =
-    Math.round(data.main.temp) / 10 + "°";
+    (data.main.temp - 273.15).toFixed(1) + "°";
   document.getElementById("description").innerText =
     data.weather[0].description;
   // Best effort to set a nice color.
