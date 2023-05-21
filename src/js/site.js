@@ -1,9 +1,4 @@
-import {
-  API_KEY,
-  BASE_URL,
-  REFRESH_DATA_INTERVAL,
-  REFRESH_UI_INTERVAL,
-} from "./env.js";
+import * as env from "./env.js";
 
 // This constant holds our application state.
 const WL = {
@@ -11,7 +6,7 @@ const WL = {
   refreshUIInterval: null,
   currentData: null,
   currentPosition: "topLeft",
-  endpoint: `${BASE_URL}?q=London&appid=${API_KEY}`,
+  endpoint: `${env.BASE_URL}?q=${env.LOCATION}&appid=${env.API_KEY}`,
   container: null,
 };
 
@@ -21,9 +16,8 @@ const main = () => {
   fetchAPIData(WL.endpoint);
   WL.fetchDataInterval = setInterval(() => {
     fetchAPIData(WL.endpoint);
-  }, REFRESH_DATA_INTERVAL);
-  refreshUI();
-  WL.refreshUIInterval = setInterval(refreshUI, REFRESH_UI_INTERVAL);
+  }, env.REFRESH_DATA_INTERVAL);
+  WL.refreshUIInterval = setInterval(refreshUI, env.REFRESH_UI_INTERVAL);
 };
 
 /**
@@ -34,9 +28,8 @@ async function fetchAPIData(url) {
   console.debug(`Fetching data from ${url}`);
   try {
     const response = await fetch(url);
-    const json = await response.json();
-    WL.currentData = json;
-    console.debug(json);
+    WL.currentData = await response.json();
+    refreshWidget(WL.currentData);
   } catch (e) {
     console.warn("Fetch or parse error", e);
   }
@@ -52,5 +45,27 @@ function refreshUI() {
   WL.container.classList.remove(currentClass);
   WL.container.classList.add(`pos-${(position + 1) % 4}`);
 }
+
+/**
+ * This function uses the data it receives to refresh the look of the
+ * weather widget.
+ * @param {json} data
+ */
+function refreshWidget(data) {
+  document.getElementById("location").innerText = data.name;
+  document
+    .getElementById("weather-icon")
+    .setAttribute(
+      "src",
+      env.ICONS_URL.replace("{{icon}}", data.weather[0].icon)
+    );
+  document.getElementById("temperature").innerText =
+    Math.round(data.main.temp) / 10 + "°";
+  document.getElementById("description").innerText =
+    data.weather[0].description;
+  // This function calls a refresh of the API.
+  refreshUI();
+}
+
 // Call the main function.
 main();

@@ -3,8 +3,8 @@
 }
 
 #weather-layer-container {
-  width: 200px;
-  height: 100px;
+  width: 250px;
+  // height: 150px;
   background: rgba(0, 0, 0, 0.1);
   position: fixed;
 }
@@ -27,4 +27,36 @@
 .pos-3 {
   bottom: 0;
   left: 0;
+}
+
+#weather-widget {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  #location {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 12px;
+  }
+  .top-row {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    #weather-icon {
+      width: 80px;
+      height: 80px;
+      margin-right: 20px;
+    }
+    #temperature {
+      font-size: 30px;
+      font-weight: bold;
+    }
+  }
+  #description {
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 12px;
+  }
 }

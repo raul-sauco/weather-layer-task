@@ -12,7 +12,6 @@ We could have started with something like the [HTML5 Boilerplate][2], or used a
 library like Angular or React, but the task is simple enough that using plain
 HTML/JS/CSS and starting from scratch is also a good option.
 
-
 ## Viewing the result
 
 The page is accessible in GitHub Pages.
