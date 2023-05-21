@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Layer</title>
+    <link rel="stylesheet" href="css/site.css" />
+  </head>
+  <body>
+    <div id="video-container">
+      <!-- Add some color but mute to not distract -->
+      <video id="video-player" src="vid/video.mp4" autoplay muted loop></video>
+    </div>
+    <div id="weather-layer-container" class="pos-0">
+      <div id="weather-widget">
+        <div id="location"></div>
+        <div class="top-row">
+          <div id="weather-icon-wrapper">
+            <img id="weather-icon" src="" alt="Icon" />
+          </div>
+          <div id="temperature"></div>
+        </div>
+        <div id="description"></div>
+      </div>
+    </div>
+    <script type="module" src="js/site.js"></script>
+  </body>
+</html>
