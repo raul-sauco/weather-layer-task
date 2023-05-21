@@ -63,8 +63,39 @@ function refreshWidget(data) {
     Math.round(data.main.temp) / 10 + "°";
   document.getElementById("description").innerText =
     data.weather[0].description;
+  // Best effort to set a nice color.
+  WL.container.style.backgroundColor = getMainBackgroundColor(
+    data.weather[0].main
+  );
   // This function calls a refresh of the API.
   refreshUI();
+}
+
+/**
+ * Try to use the name of the weather as returned by the API to come up
+ * with a nice color background for the widget.
+ * @param {string} weather
+ * @returns
+ */
+function getMainBackgroundColor(weather) {
+  switch (weather.toLowerCase()) {
+    case "clouds":
+      return "rgba(211, 211, 211, 0.7)";
+    case "rain":
+      return "rgba(173, 216, 230, 0.7)";
+    case "clear":
+      return "rgba(255, 255, 224, 0.7)";
+    case "sunny":
+      return "rgba(255, 255, 0, 0.7)";
+    case "snowing":
+      return "rgba(255, 255, 255, 0.7)";
+    case "stormy":
+      return "rgba(139, 0, 0, 0.7)";
+    case "extreme":
+      return "rgba(255, 69, 0, 0.7)";
+    default:
+      return "rgba(255, 255, 255, 0.7)";
+  }
 }
 
 // Call the main function.
