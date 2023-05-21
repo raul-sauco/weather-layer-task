@@ -1,3 +1,30 @@
-h1 {
-  color: red;
+#main-header {
+  text-align: center;
+}
+
+#weather-layer-container {
+  width: 200px;
+  height: 100px;
+  background: rgba(0, 0, 0, 0.1);
+  position: fixed;
+}
+
+.pos-0 {
+  top: 0;
+  left: 0;
+}
+
+.pos-1 {
+  top: 0;
+  right: 0;
+}
+
+.pos-2 {
+  bottom: 0;
+  right: 0;
+}
+
+.pos-3 {
+  bottom: 0;
+  left: 0;
 }
